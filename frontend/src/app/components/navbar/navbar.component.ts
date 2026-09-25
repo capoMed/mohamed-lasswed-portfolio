@@ -1,4 +1,60 @@
 import { Component, signal } from '@angular/core';
 import { IconComponent } from '../../shared/icon.component';
-@Component({selector:'app-navbar',standalone:true,imports:[IconComponent],template:`<header class="nav"><div class="container nav-inner"><a class="brand" href="#top" aria-label="Mohamed Lasswed home"><span class="brand-mark">ML</span><span>Mohamed<span class="accent">.</span></span></a><nav [class.open]="menuOpen()"><a href="#about" (click)="close()">About</a><a href="#services" (click)="close()">Services</a><a href="#skills" (click)="close()">Skills</a><a href="#projects" (click)="close()">Projects</a><a href="#contact" class="nav-cta" (click)="close()">Let's talk <app-icon name="arrow" [size]="16"/></a></nav><button class="menu" (click)="menuOpen.set(!menuOpen())" aria-label="Toggle navigation"><app-icon [name]="menuOpen()?'close':'menu'"/></button></div></header>`})
-export class NavbarComponent { menuOpen=signal(false); close(){this.menuOpen.set(false);} }
+
+@Component({
+  selector: 'app-navbar',
+  standalone: true,
+  imports: [IconComponent],
+  template: `
+    <header class="nav">
+      <div class="container nav-inner">
+
+        <a class="brand" href="#top" aria-label="Mohamed Lasswed home">
+
+          <img
+            src="/profile.png"
+            alt="Mohamed Lasswed"
+            class="brand-photo"
+          />
+
+          <span>
+            Mohamed Lasswed<span class="accent">.</span>
+          </span>
+
+        </a>
+
+        <nav [class.open]="menuOpen()">
+          <a href="#about" (click)="close()">About</a>
+          <a href="#services" (click)="close()">Services</a>
+          <a href="#skills" (click)="close()">Skills</a>
+          <a href="#projects" (click)="close()">Projects</a>
+
+          <a
+            href="#contact"
+            class="nav-cta"
+            (click)="close()"
+          >
+            Let's talk
+            <app-icon name="arrow" [size]="16"/>
+          </a>
+        </nav>
+
+        <button
+          class="menu"
+          (click)="menuOpen.set(!menuOpen())"
+          aria-label="Toggle navigation"
+        >
+          <app-icon [name]="menuOpen() ? 'close' : 'menu'"/>
+        </button>
+
+      </div>
+    </header>
+  `
+})
+export class NavbarComponent {
+  menuOpen = signal(false);
+
+  close() {
+    this.menuOpen.set(false);
+  }
+}
